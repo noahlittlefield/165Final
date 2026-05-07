@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightsaber</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<header>
+
+    <h1>Noah Littlefield</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="lightsaber.html">Lightsaber</a>
+        <a href="bionicle.html">Bionicle</a>
+    </nav>
+
+</header>
+
+<main>
+
+    <section>
+
+        <div class="slideshow40">
+
+            <img src="assets/images/Nomad2.png" alt="Lightsaber 1" class="active">
+            <img src="assets/images/FrostWraith2.png" alt="Lightsaber 2">
+            <img src="assets/images/FrostWraith5.png" alt="Lightsaber 3">
+
+        </div>
+
+        <div class="controls">
+
+            <button onclick="previousSlide()">Back</button>
+            <button onclick="nextSlide()">Next</button>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    &copy; Noah Littlefield 2026
+</footer>
+
+<script>
+
+let slides = document.querySelectorAll('.slideshow40 img');
+let current = 0;
+let paused = false;
+
+slides.forEach(slide => {
+
+    slide.addEventListener('mouseenter', () => {
+        paused = true;
+    });
+
+    slide.addEventListener('mouseleave', () => {
+        paused = false;
+    });
+
+});
+
+function showSlide(index){
+
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+    });
+
+    slides[index].classList.add('active');
+}
+
+function nextSlide(){
+
+    current++;
+
+    if(current >= slides.length){
+        current = 0;
+    }
+
+    showSlide(current);
+}
+
+function previousSlide(){
+
+    current--;
+
+    if(current < 0){
+        current = slides.length - 1;
+    }
+
+    showSlide(current);
+}
+
+setInterval(() => {
+
+    if(!paused){
+        nextSlide();
+    }
+
+}, 4000);
+
+</script>
+
+</body>
+</html>
